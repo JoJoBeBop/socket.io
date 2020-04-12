@@ -25,6 +25,13 @@ io.on('connection', (socket) => {
     console.log('message: ', msg);
     io.emit('chat message', msg);
   });
+
+  /*https://socket.io/docs/rooms-and-namespaces/*/
+  socket.on("connection", (room) => {
+    socket.leaveAll();
+    socket.join(room);
+  });
+
 });
 
 http.listen(3000, () => {
